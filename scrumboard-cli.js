@@ -48,11 +48,13 @@ program
   .description("Export the active project's board to JSON")
   .option("-d, --details", "Include card details")
   .option("-o, --out <path>", "Output file or directory")
+  .option("--headed", "Run the browser with a visible window")
   .action(async (options) => {
     try {
       const outFile = await exportBoard({
         details: options.details,
         out: options.out,
+        headed: options.headed,
       });
       console.log(`✅ Export complete. Saved to ${outFile}`);
     } catch (err) {
