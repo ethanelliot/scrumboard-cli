@@ -40,6 +40,9 @@ scrumboard project 67      # set the active project
 scrumboard project           # print the active project
 ```
 
+> [!important]
+> To find your project ID, open your project's board page. The URL will look something like `https://scrumboard.csse.canterbury.ac.nz/project/67/board` — the number before `/board` is the project ID.
+
 ### `scrumboard export`
 
 Logs into the active project's board with your saved session and scrapes it
