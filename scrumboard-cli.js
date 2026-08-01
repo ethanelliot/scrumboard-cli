@@ -50,13 +50,15 @@ program
   .option("-o, --out <path>", "Output file or directory")
   .option("--headed", "Run the browser with a visible window")
   .action(async (options) => {
+    const start = performance.now();
     try {
       const outFile = await exportBoard({
         details: options.details,
         out: options.out,
         headed: options.headed,
       });
-      console.log(`✅ Export complete. Saved to ${outFile}`);
+      const s = (performance.now() - start).toFixed(0) / 1000;
+      console.log(`✅ ${outFile} [${s}s]`);
     } catch (err) {
       console.error("❌ Export failed:", err.message);
       process.exit(1);
