@@ -1,0 +1,36 @@
+{
+  "name": "scrumboard-cli",
+  "version": "0.1.0",
+  "description": "CLI to log into, scrape, and sync the UC scrumboard into JSON for feeding into an AI.",
+  "license": "MIT",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ethanelliot/scrumboard-cli.git"
+  },
+  "keywords": [
+    "scrumboard",
+    "cli",
+    "scraper",
+    "playwright"
+  ],
+  "bin": {
+    "scrumboard": "./scrumboard-cli.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "install-browser": "playwright install chromium"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "playwright": "^1.47.0"
+  }
+}
