@@ -47,11 +47,14 @@ program
   .command("export")
   .description("Export the active project's board to JSON")
   .option("-d, --details", "Include card details")
-  .option("-o, --out-dir <dir>", "Output directory")
+  .option("-o, --out <path>", "Output file or directory")
   .action(async (options) => {
     try {
-      await exportBoard({ details: options.details, outDir: options.outDir });
-      console.log("✅ Export complete");
+      const outFile = await exportBoard({
+        details: options.details,
+        out: options.out,
+      });
+      console.log(`✅ Export complete. Saved to ${outFile}`);
     } catch (err) {
       console.error("❌ Export failed:", err.message);
       process.exit(1);
