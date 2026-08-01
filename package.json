@@ -31,6 +31,6 @@
   },
   "dependencies": {
     "commander": "^12.1.0",
-    "playwright": "^1.47.0"
+    "playwright": "^1.62.1"
   }
 }
