@@ -8,15 +8,25 @@ so it sees exactly what you'd see on the board.
 ## Install
 
 ```sh
-npm install
-npm run install-browser   # installs the Chromium build Playwright needs
+curl -fsSL https://raw.githubusercontent.com/ethanelliot/scrumboard-cli/main/install.sh | bash
 ```
 
-Link it locally to get the `scrumboard` command on your PATH:
+This clones the repo to `~/.scrumboard-cli/src`, installs dependencies,
+downloads the Chromium build Playwright needs, and links the `scrumboard`
+command onto your PATH. Re-run it any time to update to the latest version.
+
+<details>
+<summary>Manual install</summary>
 
 ```sh
-npm link
+git clone https://github.com/ethanelliot/scrumboard-cli.git
+cd scrumboard-cli
+npm install
+npm run install-browser   # installs the Chromium build Playwright needs
+npm link                  # adds the `scrumboard` command to your PATH
 ```
+
+</details>
 
 ## Usage
 
