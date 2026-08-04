@@ -103,11 +103,11 @@ scrumboard export -d -o exports/board.json
 scrumboard export --headed
 ```
 
-| Flag               | Description                                                                                                                                                               |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Flag               | Description                                                                                                                                                                                                      |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `-d, --details`    | Also open each task's edit panel and each story's detail modal to scrape descriptions (and, for stories, acceptance criteria). Without this flag, tasks have no description and stories only include their name. |
-| `-o, --out <path>` | Output location. A directory (auto-named `export-<timestamp>.json` inside it) or an exact path ending in `.json`. Falls back to `config.out`, then the current directory. |
-| `--headed`         | Run the browser with a visible window instead of headless (useful for debugging).                                                                                         |
+| `-o, --out <path>` | Output location. A directory (auto-named `export-<timestamp>.json` inside it) or an exact path ending in `.json`. Falls back to `config.out`, then the current directory.                                        |
+| `--headed`         | Run the browser with a visible window instead of headless (useful for debugging).                                                                                                                                |
 
 The export includes:
 
@@ -125,6 +125,10 @@ Config is stored at `~/.scrumboard-cli/config.json` and can hold:
 - `out` — a default output path for `scrumboard export`. There's no CLI
   command for this yet — set it by editing `~/.scrumboard-cli/config.json`
   directly, e.g. `{ "out": "exports/board.json" }`.
+- `chromiumPath` — path to a Chromium/Chrome binary to use instead of
+  Playwright's bundled build. Set automatically by `install.sh` on
+  unsupported Linux distros; can also be set manually. A `CHROMIUM_PATH`
+  environment variable overrides this if set.
 
 ## Requirements
 
