@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+require("dotenv").config();
+
 const { Command } = require("commander");
 const { login } = require("./lib/auth");
 const { exportBoard } = require("./lib/export");

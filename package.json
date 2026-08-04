@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "commander": "^12.1.0",
+    "dotenv": "^17.4.2",
     "playwright": "^1.62.1"
   }
 }
