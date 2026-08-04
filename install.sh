@@ -9,7 +9,7 @@
 # Re-running this script later updates an existing install in place.
 set -euo pipefail
 
-REPO_URL="https://github.com/RJDonnison/scrumboard-cli.git"
+REPO_URL="https://github.com/ethanelliot/scrumboard-cli.git"
 INSTALL_DIR="${SCRUMBOARD_INSTALL_DIR:-$HOME/.scrumboard-cli/src}"
 
 info() { printf '\033[1;34m==>\033[0m %s\n' "$1"; }
