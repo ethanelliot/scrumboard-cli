@@ -28,6 +28,34 @@ npm link                  # adds the `scrumboard` command to your PATH
 
 </details>
 
+<details>
+<summary>Arch / other unsupported Linux distros</summary>
+
+Playwright only ships a bundled Chromium build for Ubuntu, Debian, macOS, and
+Windows. On other distros (Arch, Fedora, etc.) `install.sh` skips that
+download and instead looks for a Chromium/Chrome binary already on your
+`PATH` (`chromium`, `chromium-browser`, `google-chrome`, `google-chrome-stable`).
+
+If it finds one, it writes its path to `CHROMIUM_PATH` in
+`~/.scrumboard-cli/src/.env` automatically, and the CLI will use it instead
+of Playwright's bundled build. If it doesn't find one, install Chromium
+first, e.g. on Arch:
+
+```sh
+sudo pacman -S chromium
+```
+
+then re-run the install script.
+
+You can also set this yourself at any time, or point it at a different
+Chromium install:
+
+```sh
+echo "CHROMIUM_PATH=/usr/bin/chromium" > ~/.scrumboard-cli/src/.env
+```
+
+</details>
+
 ## Usage
 
 ### `scrumboard login`
