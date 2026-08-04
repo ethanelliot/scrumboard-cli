@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-require("dotenv").config();
+require("dotenv").config({ quiet: true });
 
 const { Command } = require("commander");
 const { login } = require("./lib/auth");
