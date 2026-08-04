@@ -36,10 +36,10 @@ Windows. On other distros (Arch, Fedora, etc.) `install.sh` skips that
 download and instead looks for a Chromium/Chrome binary already on your
 `PATH` (`chromium`, `chromium-browser`, `google-chrome`, `google-chrome-stable`).
 
-If it finds one, it writes its path to `CHROMIUM_PATH` in
-`~/.scrumboard-cli/src/.env` automatically, and the CLI will use it instead
-of Playwright's bundled build. If it doesn't find one, install Chromium
-first, e.g. on Arch:
+If it finds one, it saves its path as `chromiumPath` in
+`~/.scrumboard-cli/config.json` automatically, and the CLI will use it
+instead of Playwright's bundled build. If it doesn't find one, install
+Chromium first, e.g. on Arch:
 
 ```sh
 sudo pacman -S chromium
@@ -48,11 +48,14 @@ sudo pacman -S chromium
 then re-run the install script.
 
 You can also set this yourself at any time, or point it at a different
-Chromium install:
+Chromium install, by editing `~/.scrumboard-cli/config.json`:
 
-```sh
-echo "CHROMIUM_PATH=/usr/bin/chromium" > ~/.scrumboard-cli/src/.env
+```json
+{ "chromiumPath": "/usr/bin/chromium" }
 ```
+
+A `CHROMIUM_PATH` environment variable, if set, always takes priority over
+this config value.
 
 </details>
 
@@ -80,6 +83,14 @@ scrumboard project           # print the active project
 
 > [!important]
 > To find your project ID, open your project's board page. The URL will look something like `https://scrumboard.csse.canterbury.ac.nz/project/67/board` — the number before `/board` is the project ID.
+
+### scrumboard chromium <path>
+
+Sets the chromium path to use for Playwright. This is only needed on unsupported Linux distros (Arch, Fedora, etc.) where the install script can't download a bundled Chromium build.
+
+```sh
+scrumboard chromium /usr/bin/chromium
+```
 
 ### `scrumboard export`
 

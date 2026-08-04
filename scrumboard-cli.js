@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 
-require("dotenv").config({ quiet: true });
-
 const { Command } = require("commander");
 const { login } = require("./lib/auth");
 const { exportBoard } = require("./lib/export");
 const {
+  setChromiumPath,
   setProjectId,
   getProjectId,
   DEFAULT_BASE_URL,
@@ -26,6 +25,14 @@ program
       console.error("❌ Login failed or timed out:", err.message);
       process.exit(1);
     }
+  });
+
+program
+  .command("chromium <path>")
+  .description("Set the path to the Chromium executable")
+  .action((path) => {
+    setChromiumPath(path);
+    console.log(`Chromium path saved: ${path}`);
   });
 
 program

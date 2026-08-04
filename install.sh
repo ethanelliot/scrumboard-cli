@@ -11,17 +11,17 @@ set -euo pipefail
 
 REPO_URL="https://github.com/ethanelliot/scrumboard-cli.git"
 INSTALL_DIR="${SCRUMBOARD_INSTALL_DIR:-$HOME/.scrumboard-cli/src}"
+CONFIG_DIR="${SCRUMBOARD_CONFIG_DIR:-$HOME/.scrumboard-cli}"
+CONFIG_FILE="$CONFIG_DIR/config.json"
 
 info() { printf '\033[1;34m==>\033[0m %s\n' "$1"; }
 error() { printf '\033[1;31mError:\033[0m %s\n' "$1" >&2; }
-
 require() {
   if ! command -v "$1" >/dev/null 2>&1; then
     error "\`$1\` is required but wasn't found on your PATH."
     exit 1
   fi
 }
-
 is_supported_os() {
   case "$(uname -s)" in
   Darwin)
@@ -60,6 +60,19 @@ find_system_chromium() {
   return 1
 }
 
+write_chromium_path() {
+  local chromium_path="$1"
+  mkdir -p "$CONFIG_DIR"
+  node -e '
+    const fs = require("fs");
+    const [chromiumPath, file] = process.argv.slice(1);
+    let config = {};
+    try { config = JSON.parse(fs.readFileSync(file, "utf8")); } catch {}
+    config.chromiumPath = chromiumPath;
+    fs.writeFileSync(file, JSON.stringify(config, null, 2));
+  ' "$chromium_path" "$CONFIG_FILE"
+}
+
 require git
 require node
 require npm
@@ -91,7 +104,7 @@ else
   info "This OS isn't one Playwright ships a bundled Chromium build for - looking for a system install instead"
   if chromium_path="$(find_system_chromium)"; then
     info "Found Chromium at $chromium_path"
-    echo "CHROMIUM_PATH=$chromium_path" >"$INSTALL_DIR/.env"
+    write_chromium_path "$chromium_path"
   else
     error "No Chromium/Chrome install found on your PATH."
     echo "Install one and re-run this script, e.g.:" >&2
