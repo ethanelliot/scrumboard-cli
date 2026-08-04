@@ -105,14 +105,15 @@ scrumboard export --headed
 
 | Flag               | Description                                                                                                                                                               |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-d, --details`    | Also open each story's detail modal to scrape its description and acceptance criteria. Without this flag, stories only include their name.                                |
+| `-d, --details`    | Also open each task's edit panel and each story's detail modal to scrape descriptions (and, for stories, acceptance criteria). Without this flag, tasks have no description and stories only include their name. |
 | `-o, --out <path>` | Output location. A directory (auto-named `export-<timestamp>.json` inside it) or an exact path ending in `.json`. Falls back to `config.out`, then the current directory. |
 | `--headed`         | Run the browser with a visible window instead of headless (useful for debugging).                                                                                         |
 
 The export includes:
 
 - **tasks** — every task card on the sprint board, with title, priority,
-  complexity, time tracking, assignees, reviewers, and column status.
+  complexity, time tracking, assignees, reviewers, column status, and (with
+  `--details`) its description.
 - **stories** — every story, with its name (and, with `--details`, its
   description and acceptance criteria).
 
